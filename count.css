@@ -1,0 +1,27 @@
+body {
+    margin: 0px auto;
+    overflow: hidden;
+}
+main > div > section:nth-child(2) > div > div > div:nth-child(1) > div > div:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2147483647;
+    background-color: #00b140;
+    font-size: 50px;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    border-radius: 0;
+}
+main > div > section:nth-child(2) > div > div > div:nth-child(1) > div > div:nth-child(2) h2 {
+    color: #000;
+    font-size: 3em;
+    text-align: left!important;
+}
+main > div > section:nth-child(2) > div > div > div:nth-child(1) > div > div:nth-child(2) h5 {
+  display: none;
+}

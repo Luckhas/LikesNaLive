@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-size: 100px; /* TAMANHO DA FONTE */
+        font-family: Arial, Helvetica, sans-serif; /* QUAL FONTE USAR */
+        font-weight: 900; /* EXPESSURA DA FONTE */
+        color: #00aaff; /* COR DA FONTE. PODE USAR OS NOMES EM INGLÊS OU USAR CODIGO HEXADECIMAIS OU RGB */
+      }
+    </style>
+    <div id="like"></div>
+    <script>
+      let key = ' COLOQUE SUA KEY AQUI '; // NÃO ESQUEÇA DE DEIXAR AS ASPAS
+      let vidID = ' ID DO VÍDEO OU LIVE QUE QUER BUSCAR OS LIKES ';
+      let url = 'https://www.googleapis.com/youtube/v3/videos?part=statistics&id=' + vidID + '&key=' + key;
+      let refreshTime = 60000; // <- AQUI DEFINA O TEMPO DE ATUALIZAÇÃO
+
+      function retriveLikes() {
+        fetch(url)
+          .then(function (response) {
+            if (!response.ok) throw new Error('Erro ao buscar os likes');
+            return response.json();
+          })
+          .then(function (data) {
+              let currentLikes = document.getElementById('like').innerHTML;
+              let likes = data.items[0].statistics.likeCount;
+
+              if(likes != currentLikes) {
+                document.getElementById('like').innerHTML = data.items[0].statistics.likeCount;
+              }
+          })
+          .catch(function (error) {
+            document.getElementById('like').innerHTML = error.message;
+          })
+      }
+      setTimeout(retriveLikes, 1);
+      setInterval(retriveLikes, refreshTime);
+    </script>
+  </body>
+</html>
